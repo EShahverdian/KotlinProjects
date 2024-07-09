@@ -3,6 +3,7 @@ package com.example.greetingcard
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
@@ -34,18 +35,25 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Surface(color = Color.Green) {
+    Surface(color = Color.Black) {
         Text(
             text = "Hello There General $name!",
-            modifier = modifier.padding(24.dp)
+            modifier = Modifier.padding(100.dp),
+            color = Color.Green
+
         )
     }
 }
 
-@Preview(showBackground = true)
+@Preview(
+    showBackground = false,
+    showSystemUi = true,
+    name = "My Preview"
+    )
+
 @Composable
 fun GreetingPreview() {
-    GreetingCardTheme {
+
         Greeting("Demi")
-    }
+
 }

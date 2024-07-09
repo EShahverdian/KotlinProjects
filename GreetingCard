@@ -1,11 +1,17 @@
 package com.example.greetingcard
-
+import android.util.Log
 import android.os.Bundle
+import android.service.autofill.OnClickAction
+import android.text.style.BackgroundColorSpan
+import android.text.style.ClickableSpan
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonColors
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -13,6 +19,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.example.greetingcard.ui.theme.GreetingCardTheme
 
@@ -27,7 +34,11 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     Greeting("Demi")
-                }
+
+
+                    }
+                FilledButtonExample()
+                println("hello")
             }
         }
     }
@@ -38,15 +49,27 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
     Surface(color = Color.Black) {
         Text(
             text = "Hello There General $name!",
-            modifier = Modifier.padding(100.dp),
+            modifier = Modifier.padding(90.dp),
             color = Color.Green
-
         )
+
+
     }
 }
 
+@Composable
+fun FilledButtonExample() {
+    Button(
+        modifier = Modifier.padding(150.dp, 110.dp),
+        colors = ButtonDefaults.buttonColors(containerColor = Color.Blue),
+        onClick = { Log.d("Example", "Button Press") }) {
+        Text("Push Button")
+
+    }
+
+}
 @Preview(
-    showBackground = false,
+    showBackground = true,
     showSystemUi = true,
     name = "My Preview"
     )
@@ -55,5 +78,8 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 fun GreetingPreview() {
 
         Greeting("Demi")
+        FilledButtonExample()
+
 
 }
+

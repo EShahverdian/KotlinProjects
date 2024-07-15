@@ -21,6 +21,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.greetingcard.ui.theme.GreetingCardTheme
 
 class MainActivity : ComponentActivity() {
@@ -49,8 +50,9 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
     Surface(color = Color.Black) {
         Text(
             text = "Hello There General $name!",
-            modifier = Modifier.padding(90.dp),
-            color = Color.Green
+            modifier = Modifier.padding(10.dp, 30.dp),
+            color = Color.Green,
+            fontSize = 40.sp
         )
 
 
@@ -64,7 +66,7 @@ fun FilledButtonExample() {
         colors = ButtonDefaults.buttonColors(containerColor = Color.Blue),
         onClick = { Log.d("Example", "Button Press") }) {
         Text("Push Button")
-
+        
     }
 
 }

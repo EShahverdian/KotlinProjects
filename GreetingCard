@@ -52,7 +52,8 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
             text = "Hello There General $name!",
             modifier = Modifier.padding(10.dp, 30.dp),
             color = Color.Green,
-            fontSize = 40.sp
+            fontSize = 40.sp,
+            lineHeight = 60.sp
         )
 
 

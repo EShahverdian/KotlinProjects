@@ -1,6 +1,7 @@
 package com.example.greetingcard
 import android.util.Log
 import android.os.Bundle
+import android.os.Message
 import android.service.autofill.OnClickAction
 import android.text.style.BackgroundColorSpan
 import android.text.style.ClickableSpan
@@ -23,6 +24,14 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.greetingcard.ui.theme.GreetingCardTheme
+import androidx.compose.ui.res.painterResource
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.style.TextAlign
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,33 +39,58 @@ class MainActivity : ComponentActivity() {
         setContent {
             GreetingCardTheme {
                 // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    Greeting("Demi")
+                GreetingImage(message = "Happy Birthday Idiot", from = "from, Bozo")
 
 
-                    }
+
+
                 FilledButtonExample()
-                println("hello")
+
+                }
             }
         }
     }
-}
+
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Surface(color = Color.Black) {
-        Text(
-            text = "Hello There General $name!",
-            modifier = Modifier.padding(10.dp, 30.dp),
-            color = Color.Green,
-            fontSize = 40.sp,
-            lineHeight = 60.sp
+fun Greeting(message: String, from:String, modifier: Modifier = Modifier) {
+
+    Surface(color = Color.Transparent)
+    {
+        Column(
+            verticalArrangement = Arrangement.Center,
+            modifier = modifier
+        ) {
+
+            Text(
+                text = " $message $from",
+                modifier = Modifier.padding(10.dp, 30.dp),
+                color = Color.Black,
+                fontSize = 40.sp,
+                lineHeight = 60.sp,
+                textAlign = TextAlign.Center
+            )
+
+
+        }
+    }
+}
+@Composable fun GreetingImage(message: String, from: String, modifier: Modifier = Modifier) {
+    val image = painterResource(R.drawable.androidparty)
+    Box(modifier) {
+        Image(
+            painter = image,
+            contentDescription = null,
+            contentScale = ContentScale.Crop,
+            alpha = 0.5F
         )
-
-
+        Greeting(
+            message = message,
+            from = from,
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(8.dp)
+        )
     }
 }
 
@@ -71,18 +105,33 @@ fun FilledButtonExample() {
     }
 
 }
-@Preview(
-    showBackground = true,
-    showSystemUi = true,
-    name = "My Preview"
-    )
+//@Preview(
+//    showBackground = true,
+//    showSystemUi = true,
+//    name = "My Preview"
+//    )
+//
+//@Composable
+//fun GreetingPreview() {
+//
+//        Greeting("Demi", from = "From Imed")
+//        FilledButtonExample()
+//
+//
+//}
 
+@Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
+fun BirthdayCardPreview() {
+    GreetingCardTheme {
+        GreetingImage(
+            message = "Happy Birthday Idiot",
+            from = "from, Bozo"
+        )
+    FilledButtonExample()
+    }
 
-        Greeting("Demi")
-        FilledButtonExample()
+
 
 
 }
-
